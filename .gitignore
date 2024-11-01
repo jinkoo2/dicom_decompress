@@ -1,0 +1,163 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environment
+env/
+venv/
+ENV/
+.env/
+.venv/
+.env.bak/
+env.bak/
+bin/
+Scripts/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Pytest
+.pytest_cache/
+.cache
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pylint
+.pylint.d/
+
+# Environments
+.pyenv
+.venv
+venv/
+ENV/
+env/
+.env
+.venv/
+
+# pipenv
+Pipfile.lock
+
+# Poetry
+poetry.lock
+poetry.toml
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# PyCharm
+.idea/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+db.sqlite3
+db.sqlite3-journal
+media/
+*.log
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# mkdocs documentation
+site
+
+# pyenv
+.python-version
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+coverage.xml
+*.cover
+.hypothesis/
+
+# pylint
+.pylintrc
+pylint.d/
+
+# Testing
+.coverage
+nosetests.xml
+test*.py
+.junit.xml
+
+# IPython and Jupyter Notebook files
+profile_default/
+ipython_config.py
+*.nbconvert/
+*.ipynb
+*.nb.html
+
+# MacOS
+.DS_Store
+
+# Exclude directories and files starting with an underscore
+_*/ 
+_*
+
+# Additional files
+*.bak
+*.swp
+*.swo
+~*
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite3
+
+# Secret files
+*.env
+*.secrets
+
+# End of file
