@@ -5,17 +5,7 @@ import os
 
 def is_compressed(dicom_file):
     ds = pydicom.dcmread(dicom_file, stop_before_pixels=True)
-    compressed_uids = [
-        pydicom.uid.JPEGBaseline,
-        pydicom.uid.JPEGExtended,
-        pydicom.uid.JPEGLossless,
-        pydicom.uid.JPEGLosslessNonHierarchical,
-        pydicom.uid.JPEGLSLossless,
-        pydicom.uid.JPEGLSLossy,
-        pydicom.uid.JPEG2000Lossless,
-        pydicom.uid.JPEG2000,
-        pydicom.uid.RLELossless
-    ]
+    compressed_uids = pydicom.uid.JPEG2000TransferSyntaxes
     return ds.file_meta.TransferSyntaxUID in compressed_uids
 
 def decompress_dicom(input_file, output_file):
@@ -45,20 +35,46 @@ def find_dcm_files(folder_path):
     dcm_files = glob.glob(os.path.join(folder_path, "*.dcm"))
     return dcm_files
 
+def find_all_files(folder_path):
+    # Search for all files in the specified folder
+    dcm_files = glob.glob(os.path.join(folder_path, "*"))
+    return dcm_files
+
+# List of common file extensions
+common_extensions = {
+    '.txt', '.csv', '.jpg', '.png', '.pdf', '.doc', '.docx', '.xls', '.xlsx',
+    '.ppt', '.pptx', '.mp3', '.mp4', '.avi', '.mov', '.zip', '.tar', '.gz',
+    '.html', '.htm', '.xml', '.json', '.py', '.java', '.c', '.cpp', '.js',
+    '.css', '.php', '.rb', '.go', '.sh', '.bat', '.md', '.ini', '.log'
+}
+
+def is_common_file(filename):
+    # Extract the file extension and check if it's in the known set
+    _, extension = os.path.splitext(filename)
+    return extension.lower() in common_extensions
+
 if __name__ == '__main__':
     # Example usage
-    folder_path = "U:\\temp\\CT_SD_8240456_20241031135416_1"
+    folder_path = "W:\RadOnc\Physics\Temp\S0000001"
     out_dir = os.path.join(folder_path, 'decompressed')
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
-    dcm_files = find_dcm_files(folder_path)
-    
-    for dcm_file in dcm_files:
-        filename = os.path.basename(dcm_file)
+    files = find_dcm_files(folder_path)
+
+    if len(files) == 0:
+        files = find_all_files(folder_path)
+
+    for file in files:
+
+        if is_common_file(file):
+            print(f'Not dicom file: {file}')
+            continue
+
+        filename = os.path.basename(file)
         print(f"Processing {filename}...")
         out_file = os.path.join(out_dir, filename)
 
         try:
-            decompress_dicom(dcm_file, out_file)
+            decompress_dicom(file, out_file)
         except Exception as e:
-            print(f"Error: decompression failed for {dcm_file}, {e}")
+            print(f"Error: decompression failed for {file}, {e}")
