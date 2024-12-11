@@ -4,9 +4,10 @@ import glob
 import os
 
 def is_compressed(dicom_file):
-    ds = pydicom.dcmread(dicom_file, stop_before_pixels=True)
-    compressed_uids = pydicom.uid.JPEG2000TransferSyntaxes
-    return ds.file_meta.TransferSyntaxUID in compressed_uids
+    #ds = pydicom.dcmread(dicom_file, stop_before_pixels=True)
+    #compressed_uids = pydicom.uid.JPEG2000TransferSyntaxes
+    #return ds.file_meta.TransferSyntaxUID in compressed_uids
+    return True
 
 def decompress_dicom(input_file, output_file):
     # Read the DICOM file
@@ -55,7 +56,8 @@ def is_common_file(filename):
 
 if __name__ == '__main__':
     # Example usage
-    folder_path = "W:\RadOnc\Physics\Temp\S0000001"
+    #folder_path = "W:\RadOnc\Physics\Temp\S0000001"
+    folder_path = "U:/temp/CT_OT_PT_SD_8533502_20241210124203_1"
     out_dir = os.path.join(folder_path, 'decompressed')
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
